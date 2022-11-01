@@ -1,33 +1,31 @@
+package Trees;
 import java.util.*;
-class Node{
-    int data;
-    Node left;
-    Node right;
-    Node (int data){
-        this.data = data;
-        this.left=null;
-        this.right=null;
-    }
-}
-class BinaryTree{
-    static int idx =-1;
-    public static Node buildTree(int [] nodes){
-        if(idx<6){
-            idx++;
+
+
+class BST {
+
+    public Node insert(Node node, int val) {
+        if(node == null) {
+            return createNewNode(val);
         }
 
-        if(nodes[idx]==-1){
-            return null;
+        if(val < node.data) {
+            node.left = insert(node.left, val);
+        } else if((val > node.data)) {
+            node.right = insert(node.right, val);
         }
-        Node newNode = new Node(nodes[idx]);
-        newNode.left=buildTree(nodes);
-        newNode.right=buildTree(nodes);
-        return newNode;
+
+        return node;
     }
 
+    public Node createNewNode(int k) {
+        Node a = new Node(k);
+
+        return a;
+    }
 }
 
-class Solution {
+public class Preorder_Traversal_problem{
     public static void preorder(Node root){
         if(root==null){
             return;
@@ -36,29 +34,19 @@ class Solution {
         preorder(root.left);
         preorder(root.right);
     }
-    static void preBST(int arr[], int n)
-    {
+    public static void main(String[] args) {
+        BST a = new BST();
+        Node root = null;
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int [] arr = new int[n];
+        for(int i =0; i<n; i++){
+            root = a.insert(root,sc.nextInt());
+        }
 
 
-        BinaryTree tree = new BinaryTree();
-        Node root =tree.buildTree(arr);
         preorder(root);
 
-
-
     }
-}
 
-public class Preorder_Traversal_problem {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n= sc.nextInt();
-        int array[] = new int[n];
-
-        for(int i=0; i<n; i++){
-            array[i]= sc.nextInt();
-        }
-        Solution Obj = new Solution();
-        Obj.preBST(array,n);
-    }
 }
