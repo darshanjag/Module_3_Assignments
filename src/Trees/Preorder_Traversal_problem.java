@@ -3,26 +3,22 @@ import java.util.*;
 
 
 class BST {
-
-    public Node insert(Node node, int val) {
-        if(node == null) {
-            return createNewNode(val);
+    public Node insert(Node root, int data){
+        if(root==null){
+            return createNewNode(root,data);
         }
-
-        if(val < node.data) {
-            node.left = insert(node.left, val);
-        } else if((val > node.data)) {
-            node.right = insert(node.right, val);
+        if(data<root.data){
+            root.left = insert(root.left, data);
+        }else{
+            root.right = insert(root.right, data);
         }
-
-        return node;
+        return root;
+    }
+    public Node createNewNode(Node root, int data){
+        Node newNode = new Node(data);
+        return newNode;
     }
 
-    public Node createNewNode(int k) {
-        Node a = new Node(k);
-
-        return a;
-    }
 }
 
 public class Preorder_Traversal_problem{
